@@ -14,5 +14,11 @@
   --main-font-size: 18px;
   --cover-image: url(../images/cover-image-dark.png);
   --background-color: #000E2E;
+  --main-gap: 10px;
+}
 
+@media (width >= 768px) {
+  :root {
+  --main-gap: 20px;
+  }
 }
