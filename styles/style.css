@@ -4,14 +4,16 @@
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
   font-family: 'IBM Plex mono', sans-serif;
   font-size: var(--main-font-size);
+  background-image: var(--cover-image);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--background-color);
+  background-attachment: fixed;
 }
 
 .header {
   position: relative;
   font-family: 'IBM Plex mono', sans-serif;
-  background-image: var(--cover-image);
-  background-size: cover;
-  background-position: center;
   padding: 10px;
   display: grid;
   grid-template-columns: 1;
@@ -87,14 +89,22 @@
 
 .header__theme-menu-item {
   display: flex;
-  outline: 1px solid var(--accent-color);
   color: var(--accent-color);
 }
 
 .header__theme-menu-button {
   text-transform: lowercase;
   width: 100%;
-  border: none;
+  border: 1px solid transparent;
+  padding: 2px 13px 4px;
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+}
+
+.header__theme-menu-button_active {
+  border: 1px solid var(--accent-color);
+  pointer-events: none;
 }
 
 .header__title {
@@ -115,34 +125,39 @@
 }
 
 .content {
-  padding-top: 40px;
-  background-color: var(--background-color);
+  padding-top: 30px;
+  line-height: 23.4px;
 }
 
 .section {
+  display: grid;
   padding: 10px;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.section__container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .section__question {
-  padding-bottom: 20px;
   color: var(--accent-color);
   font-weight: var(--font-weight-bold);
 }
 
 .section__title {
-  margin-bottom: 10px;
   color: var(--main-title-color);
   background-color: var(--accent-color);
   font-weight: var(--font-weight-bold);
 }
 
 .section__description {
-  padding-bottom: 20px;
   color: var(--main-paragraph-color);
 }
 
 .section__advice {
-  margin-bottom: 10px;
   color: var(--main-title-color);
   background-color: var(--accent-color);
   font-weight: var(--font-weight-regular);
@@ -160,7 +175,6 @@
 .gallery {
   display: grid;
   gap: 10px;
-  padding-bottom: 40px;
 }
 
 .gallery__item {
@@ -180,6 +194,6 @@
   color: var(--footer-title-color);
   font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   line-height: clamp(5.98125rem, 4.7595rem + 5.2126vw, 8.095625rem);
-  text-shadow: 4px 4px 0 var(--accent-color);
+  text-shadow: 2px 2px 0 var(--accent-color);
 }
 
