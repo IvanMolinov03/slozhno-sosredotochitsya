@@ -19,6 +19,6 @@
 
 @media (width >= 768px) {
   :root {
-  --main-gap: 20px;
+    --main-gap: 20px; 
   }
 }
