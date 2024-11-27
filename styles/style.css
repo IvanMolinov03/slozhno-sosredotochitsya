@@ -3,24 +3,22 @@
 .page {
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
   font-family: 'IBM Plex mono', sans-serif;
-  font-size: var(--main-font-size);
+  font-size: var(--main-font-size, sans-serif);
   background-image: var(--cover-image);
   background-size: cover;
   background-position: center;
-  background-color: var(--background-color);
+  background-color: var(--background-color, #000E2E);
   background-attachment: fixed;
 }
 
 .header {
-  min-inline-size: 100vw;
   min-block-size: 100vh;
   position: relative;
   font-family: 'IBM Plex mono', sans-serif;
   padding: var(--main-gap);
   display: grid;
-  grid-template-columns: 1;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr min-content 1fr;
-  
 }
 
 .header__rec {
@@ -33,7 +31,7 @@
   top: var(--main-gap);
   right: calc(9px + var(--main-gap));
   text-transform: uppercase;
-  color: var(--accent-color);
+  color: var(--rec-color, #FF0070);
 }
 
 .header__rec::after {
@@ -43,8 +41,8 @@
   align-self: center;
   width: 9px;
   height: 9px;
-  background-color: var(--accent-color);
-  box-shadow: 0px 0px 4px 2px var(--accent-color);
+  background-color: var(--rec-color, #FF0070);
+  box-shadow: 0px 0px 4px 2px var(--shadow-color, #FF0070);
 }
 
 .decorated-zone {
@@ -60,7 +58,7 @@
   height: 25px;
   border-top: 1px solid;
   border-right: 1px solid;
-  border-color: var(--accent-color);
+  border-color: var(--border-color, #FF0070);
 }
 
 .decorated-zone::after {
@@ -72,7 +70,7 @@
   height: 25px;
   border-bottom: 1px solid;
   border-left: 1px solid;
-  border-color: var(--accent-color);
+  border-color: var(--border-color, #FF0070);
 }
 
 .header__theme-menu {
@@ -82,7 +80,7 @@
 
 @media (width >= 1024px) {
   .header__theme-menu {
-    justify-self: center;
+    justify-self: center; 
     align-self: start;
   }
 }
@@ -95,52 +93,54 @@
 
 @media (width >= 1024px) {
   .header__theme-menu-list {
-  flex-direction: row;
+    flex-direction: row;
   }
 }
 
 .header__theme-menu-item {
   display: flex;
-  color: var(--accent-color);
+  color: var(--nav-text-color, #FF0070);
 }
 
 .header__theme-menu-button {
   text-transform: lowercase;
   width: 100%;
   border: 1px solid transparent;
-  padding: 2px 13px 4px;
+  padding: 1px 13px 4px;
   line-height: 1;
   cursor: pointer;
   appearance: none;
 }
 
 .header__theme-menu-button_active {
-  border: 1px solid var(--accent-color);
+  border: 1px solid var(--border-color, #FF0070);
   pointer-events: none;
 }
 
 .header__title {
-  color: var(--header-title-color);
-  font-size: clamp(116px, 112.1832px + 1.0178vw, 120px);
+  color: var(--header-title-color, #DB00FF);
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   line-height: clamp(5.98125rem, 4.7595rem + 5.2126vw, 8.095625rem);
-  text-shadow: 4px 4px 0 var(--accent-color);
+  text-shadow: 4px 4px 0 var(--shadow-color, #FF0070);
   align-self: center;
+  overflow: hidden;
 }
 
 @media (width >= 768px) {
   .header__title {
     margin-inline-start: -20px;
-    font-size: clamp(120px, 9px + 14.4531vw, 157px);
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+    line-height: clamp(6.1875rem, 0.4631rem + 11.9258vw, 8.0956rem);
   }
 }
 
 .header__description {
   inline-size: min(100%, 364px);
   justify-self: end;
-  background-color: var(--accent-color);
+  background-color: var(--accent-color, #FF0070);
   line-height: 23.4px;
-  font-weight: var(--font-weight-bold);
-  color: var(--main-title-color);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--main-title-color, #000028);
   align-self: center;
 }
 
@@ -181,14 +181,15 @@
 }
 
 .section__question {
-  color: var(--accent-color);
-  font-weight: var(--font-weight-bold);
+  color: var(--question-color, #FF0070);
+  font-weight: var(--font-weight-bold, 700);
 }
 
 .section__title {
-  color: var(--main-title-color);
-  background-color: var(--accent-color);
-  font-weight: var(--font-weight-bold);  /* ПРОПИСАТЬ ВСЕМ ПЕРЕМЕННЫМ ФОЛБЭКИ */
+  color: var(--main-title-color, #000028);
+  background-color: var(--accent-color, #FF0070);
+  font-weight: var(--font-weight-bold, 700);  /* ПРОПИСАТЬ ВСЕМ ПЕРЕМЕННЫМ ФОЛБЭКИ */
+  overflow: hidden;
 }
 
 .section_how .section__title {
@@ -196,13 +197,13 @@
 }
 
 .section__description {
-  color: var(--main-paragraph-color);
+  color: var(--main-paragraph-color, #F1B2CE);
 }
 
 .section__advice {
-  color: var(--main-title-color);
-  background-color: var(--accent-color);
-  font-weight: var(--font-weight-regular);
+  color: var(--main-title-color, #000028);
+  background-color: var(--accent-color, #FF0070);
+  font-weight: var(--font-weight-regular, 400);
 }
 
 @media (width >= 768px) {
@@ -273,8 +274,8 @@
 }
 
 .paragraph-link {
-  text-shadow: 2px 2px 0 var(--accent-color);
-  border-bottom: 1px solid var(--main-paragraph-color);
+  text-shadow: 2px 2px 0 var(--shadow-color, #FF0070);
+  border-bottom: 1px solid var(--main-paragraph-color, #F1B2CE);
 }
 
 .no-border {
@@ -288,14 +289,14 @@
 
 .gallery {
   display: grid;
-  gap: var(--main-gap);
+  gap: var(--main-gap, 10px);
 }
 
 @media (width >= 768px) {
   .gallery {
     place-content: center;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 3, 1fr;
+    grid-template-rows: auto;
     grid-template-areas:
       "sunset sunset ice-cream"
       "tape books ice-cream"
@@ -312,7 +313,6 @@
     min-block-size: 100%;
     object-fit: cover;
     object-position: center;
-    width: 100%;
   }
 }
 
@@ -342,18 +342,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--background-color);
-  min-inline-size: 100vw;
+  background-color: var(--background-color, #000E2E);
   min-block-size: 100vh;
 }
 
 .footer__title {
-  color: var(--footer-title-color);
-  font-size: clamp(116px, 112.1832px + 1.0178vw, 120px);
+  color: var(--footer-title-color, #DB00FF);
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   line-height: clamp(5.98125rem, 4.7595rem + 5.2126vw, 8.095625rem);
-  text-shadow: 2px 2px 0 var(--accent-color);
+  text-shadow: 2px 2px 0 var(--shadow-color, #FF0070);
 }
 
 @media (width >= 768px) {
-  font-size: clamp(120px, 9px + 14.4531vw, 157px);
+  .footer__title {
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  }
 }
