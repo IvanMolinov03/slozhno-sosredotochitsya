@@ -1,9 +1,6 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
-
 .page {
-  /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
   font-family: 'IBM Plex mono', sans-serif;
-  font-size: var(--main-font-size, sans-serif);
+  font-size: var(--main-font-size);
   background-image: var(--cover-image);
   background-size: cover;
   background-position: center;
@@ -15,7 +12,7 @@
   min-block-size: 100vh;
   position: relative;
   font-family: 'IBM Plex mono', sans-serif;
-  padding: var(--main-gap);
+  padding: var(--content-padding);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr min-content 1fr;
@@ -28,8 +25,8 @@
   width: 52px;
   height: 26px;
   line-height: 25px;
-  top: var(--main-gap);
-  right: calc(9px + var(--main-gap));
+  top: var(--content-padding);
+  right: calc(9px + var(--content-padding));
   text-transform: uppercase;
   color: var(--rec-color, #FF0070);
 }
@@ -52,24 +49,24 @@
 .decorated-zone::before {
   position: absolute;
   content: '';
-  top: var(--main-gap);
-  right: var(--main-gap);
+  top: var(--content-padding);
+  right: var(--content-padding);
   width: 25px;
   height: 25px;
-  border-top: 1px solid;
-  border-right: 1px solid;
+  border-block-start: 1px solid;
+  border-inline-end: 1px solid;
   border-color: var(--border-color, #FF0070);
 }
 
 .decorated-zone::after {
   position: absolute;
   content: '';
-  bottom: var(--main-gap);
-  left: var(--main-gap);
+  bottom: var(--content-padding);
+  left: var(--content-padding);
   width: 25px;
   height: 25px;
-  border-bottom: 1px solid;
-  border-left: 1px solid;
+  border-block-end: 1px solid;
+  border-inline-start: 1px solid;
   border-color: var(--border-color, #FF0070);
 }
 
@@ -102,6 +99,11 @@
   color: var(--nav-text-color, #FF0070);
 }
 
+.header__theme-menu-item:hover {
+  outline: 1px solid var(--nav-hover-color);
+  outline-offset: -1px;
+}
+
 .header__theme-menu-button {
   text-transform: lowercase;
   width: 100%;
@@ -110,6 +112,14 @@
   line-height: 1;
   cursor: pointer;
   appearance: none;
+}
+
+.header__theme-menu-button:focus {
+  outline: none;
+}
+
+.header__theme-menu-button:focus-visible {
+  border-bottom: 1px solid var(--nav-text-color, #FF0070);
 }
 
 .header__theme-menu-button_active {
@@ -157,20 +167,20 @@
 
 @media (width >= 768px) {
   .content {
-    padding-top: 40px;
+    padding-block-start: 40px;
   }
 }
 
 .section {
-  padding: var(--main-gap);
+  padding: var(--content-padding);
   display: grid;
-  margin-bottom: 30px;
+  margin-block-end: 30px;
   gap: 20px;
 }
 
 @media (width >= 768px) {
   .section {
-    margin-bottom: 40px;
+    margin-block-end: 40px;
   }
 }
 
@@ -188,12 +198,12 @@
 .section__title {
   color: var(--main-title-color, #000028);
   background-color: var(--accent-color, #FF0070);
-  font-weight: var(--font-weight-bold, 700);  /* ПРОПИСАТЬ ВСЕМ ПЕРЕМЕННЫМ ФОЛБЭКИ */
+  font-weight: var(--font-weight-bold, 700);
   overflow: hidden;
 }
 
-.section_how .section__title {
-  margin-bottom: 10px;
+.section-how .section__title {
+  margin-block-end: 10px;
 }
 
 .section__description {
@@ -207,89 +217,95 @@
 }
 
 @media (width >= 768px) {
-  .section_why {
+  .section-why {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: repeat(auto-fill, min-content);
   }
   
-  .section_why .section__question {
+  .section-why .section__question {
     grid-column: span 1;
     grid-row: 1 / -1;
   }
 
-  .section_why .section__container {
+  .section-why .section__container {
     grid-column: 2 / -1;
   }
 
-  .section_what {
+  .section-what {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: repeat(auto-fill, min-content);
   }
   
-  .section_what .section__question {
+  .section-what .section__question {
     grid-column: span 1;
     grid-row: span 1;
   }
 
-  .section_what .section__container {
+  .section-what .section__container {
     grid-column: 1 / -1;
   }
 
-  .section_how {
+  .section-how {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: repeat(auto-fill, min-content);
   }
 
-  .section_how .section__question {
+  .section-how .section__question {
     grid-column: span 1;
   }
 
-  .section_how .section__container {
+  .section-how .section__container {
     grid-column: 2 / -1;
   }
 }
 
 @media (width >= 1024px) {
-  .section_why {
+  .section-why {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .section_what {
+  .section-what {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: min-content, repeat(auto-fill, 1fr);
   }
 
-.section_what .section__question {
-  grid-column: 1 / 2;
-}
-
-  .section_what .section__container {
-    grid-column: auto;
-    grid-row-start: 2;
+  .section-what .section__question {
+    inline-size: calc(33.3% - var(--content-padding));
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
   }
 
-  .section_how {
+  .section-what .section__container {
+    grid-column: span 1;
+  }
+
+  .section-how {
     grid-template-columns: 1fr 1fr 1fr;
-}
+  }
 }
 
 .paragraph-link {
   text-shadow: 2px 2px 0 var(--shadow-color, #FF0070);
+}
+
+.paragraph-link:hover {
   border-bottom: 1px solid var(--main-paragraph-color, #F1B2CE);
 }
 
-.no-border {
-  border: none;
+.paragraph-link:focus {
+  outline: none;
 }
 
-.section_gallery {
+.paragraph-link:focus-visible {
+  outline: 1px solid var(--main-paragraph-color, #F1B2CE);
+}
+
+.section-gallery {
   grid-template-columns: 1fr;
-  gap: var(--main-gap);
+  gap: var(--content-padding);
 }
 
 .gallery {
   display: grid;
-  gap: var(--main-gap, 10px);
+  gap: var(--content-padding, 10px);
 }
 
 @media (width >= 768px) {
@@ -317,25 +333,25 @@
 }
 
 @media (width >= 768px) {
-.sunset {
-  grid-area: sunset;
-}
+  .sunset {
+    grid-area: sunset;
+  }
 
-.ice-cream {
-  grid-area: ice-cream;
-}
+  .ice-cream {
+    grid-area: ice-cream;
+  }
 
-.tape {
-  grid-area: tape;
-}
+  .tape {
+    grid-area: tape;
+  }
 
-.books {
-  grid-area: books;
-}
+  .books {
+    grid-area: books;
+  }
 
-.street {
-  grid-area: street;
-}
+  .street {
+    grid-area: street;
+  }
 }
 
 .footer {
