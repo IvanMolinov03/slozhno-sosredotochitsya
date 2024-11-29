@@ -20,6 +20,6 @@
 
 @media (width >= 768px) {
   :root {
-    --content-padding: 20px; 
+    --content-padding: 20px;
   }
 }
